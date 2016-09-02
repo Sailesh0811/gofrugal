@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
+
+    <title>Title</title>
+    <script>
+        function addRow(tableID) {
+            var table = document.getElementById(tableID);
+            var rowCount = (table.rows.length-2);
+            if(rowCount < 5){                            // limit the user from creating fields more than your limits
+                var row = table.insertRow(rowCount);
+                var colCount = table.rows[1].cells.length;
+                for(var i=0; i <colCount; i++) {
+                    var newcell = row.insertCell(i);
+                    newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+                }
+            }else{
+                alert("");
+
+            }
+        }
+
+        function deleteRow(tableID) {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    if(rowCount <= 1) {               // limit the user from removing all the fields
+                        alert("Cannot Remove all the Passenger.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+<div class="container col s12 m7">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
+            <div class="card-content">
+                <img src="Sastra.jpg" class="circle left" style="width: 20%">
+
+                <img src="carism.jpg" class="circle right" style="width: 20%">
+            </div>
+            <div class="card-action">
+                <h1 style="text-align: center"><strong>CARISM-SASTRA</strong></h1>
+                <h5 style="text-align: center"><b>Laboratory Service Request Cum Contract Review Form</b></h5>
+            </div>
+        </div>
+    </div>
+
+
+<br><br>
+<br>
+<br>
+
+<div class=" input-field col s12">
+    <select multiple>
+        <optgroup label="team 1">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+        </optgroup>
+        <optgroup label="team 2">
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+        </optgroup>
+    </select>
+    <label>Customer Type</label>
+</div>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input  id="SRNO" type="text" class="validate">
+                <label for="first_name">SR NO: </label>
+            </div>
+            <div class="input-field col s6">
+                <input id="BILLNO" type="text" class="validate">
+                <label for="BILLNO">BILL NO:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input  id="first_name" type="text" class="validate">
+                <label for="first_name">Date of LSR & CR: </label>
+            </div>
+            <div class="input-field col s6">
+                <input id="DOP" type="text" class="validate">
+                <label for="DOP">Date of Payment: </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <br><br>
+        <h5 style="text-align: center"><b>Details of the Sample (Attach Technical Information, if necessary) - To be completed by the Customer</b></h5>
+        <br>
+        <br>
+        <table id="dataTable" class="responsive-table bordered" >
+
+                <thead>
+                <tr>
+                    <th style="text-align: center"> Sample <br>Description / Code </th>
+                    <th style="text-align: center"> Test(s) Requested </th>
+                    <th style="text-align: center"> Quantity </th>
+                    <th style="text-align: center"> Rate </th>
+                    <th style="text-align: center"> Amount(₹)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" id="SD">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="TR">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="Q">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="R">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="A">
+                    </td>
+                </tbody>
+                </tr>
+                <tr>
+                    <td colspan="4"><b>Tax(₹)</b></td>
+                    <td>  </td>
+                </tr><tr>
+                <td colspan="4"><b>Total Amount (inclusive of tax)(₹)</b></td>
+                <td>  </td>
+            </tr>
+            </table>
+
+
+        <br>
+        <a class="waves-effect waves-light btn" onclick="addRow('dataTable')">Add More Details</a>
+        <br><br>
+        <h5 style="text-align: center"><b><u>Description of Sample (tick and complete)</u></b></h5>
+        <br><br>
+        <div class="input-field col s12 m6">
+            <p><b>DETAILS:</b></p>
+            <p>
+                <input type="checkbox" id="test1" />
+                <label for="test1">TOXIC</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test2" />
+                <label for="test2">CARCINOGENIC</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test3" />
+                <label for="test3">CORROSIVE/ABRASIVE</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test4" />
+                <label for="test4">IRRITANT</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test5" />
+                <label for="test5">HAZARDOUS</label>
+            </p>
+        </div>
+        <div class="input-field col s12 m6">
+            <p><b>STATE:</b></p>
+            <p>
+                <input type="checkbox" id="test21" />
+                <label for="test21">SOLID</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test22" />
+                <label for="test22">LIQUID</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test23" />
+                <label for="test23">SEMI-SOLID</label>
+            </p>
+
+        </div>
+        <div class="input-field col s12 m6">
+
+            <p><b>is the sample sensitive to?</b></p>
+            <p>
+                <input type="checkbox" id="test31" />
+                <label for="test31">AIR</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test32" />
+                <label for="test32">LIGHT</label>
+            </p>
+            <p>
+                <input type="checkbox" id="test33" />
+                <label for="test33">MOISTURE</label>
+            </p>
+
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="input-field col s6">
+                <input  id="TRT" type="text" class="validate">
+                <label for="TRT">TURNAROUND TIME (in days) </label>
+            </div>
+            <div class="input-field col s6">
+                <input id="SI" type="text" class="validate">
+                <label for="SI">SOLUBILITY IN(mg/ml):</label>
+            </div>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="SOLUBLE" class="materialize-textarea"></textarea>
+                        <label for="SOLUBLE">SOLUBLE IN</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </form>
+</div>
+</div>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="materialize/js/materialize.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+
+</body>
+
+
+</html>
